@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
