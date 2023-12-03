@@ -24,6 +24,11 @@ else
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    Seeds.Initialize(scope.ServiceProvider.GetRequiredService<Db_Context>());
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
