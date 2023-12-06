@@ -1,22 +1,57 @@
-html {
-  font-size: 14px;
+
+.nav-link {
+  border-radius: 7px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.nav-link:hover {
+  background-color: rgb(65, 65, 65);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+input {
+  padding: 4px 8px;
+  border-radius: 10px;
+  border: none;
+  margin: 6px;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+button {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: black 4px 4px 4px;
 }
 
-body {
-  margin-bottom: 60px;
+:root {
+  --primary: rgb(18, 145, 230); 
+  --secondary: rgb(164, 255, 209);
+  --error: rgb(253, 97, 58);
+}
+
+.text-primary{
+  color: var(--primary) !important;
+}
+
+.bg-primary{
+  background-color: var(--primary);
+}
+
+.text-secondary{
+  color: var(--secondary) !important;
+}
+
+.bg-secondary{
+  background-color: var(--secondary) !important;
+}
+
+.text-error{
+  color: var(--error) !important;
+}
+
+.bg-error{
+  background-color: var(--error);
+}
+
+.bold{
+  font-weight: bold;
 }
