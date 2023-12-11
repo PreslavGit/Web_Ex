@@ -1,0 +1,49 @@
+@page
+@model webex.Pages_MuscleGroup.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MuscleGroup</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MuscleGroup.Name" class="control-label"></label>
+                <input asp-for="MuscleGroup.Name" class="form-control" />
+                <span asp-validation-for="MuscleGroup.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MuscleGroup.Location" class="control-label"></label>
+                <select asp-for="MuscleGroup.Location" class="form-control"></select>
+                <span asp-validation-for="MuscleGroup.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MuscleGroup.MuscleFunction" class="control-label"></label>
+                <select asp-for="MuscleGroup.MuscleFunction" class="form-control"></select>
+                <span asp-validation-for="MuscleGroup.MuscleFunction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MuscleGroup.Color" class="control-label"></label>
+                <input asp-for="MuscleGroup.Color" class="form-control" />
+                <span asp-validation-for="MuscleGroup.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

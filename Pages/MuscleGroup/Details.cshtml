@@ -1,0 +1,43 @@
+@page
+@model webex.Pages_MuscleGroup.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MuscleGroup</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MuscleGroup.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MuscleGroup.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MuscleGroup.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MuscleGroup.Location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MuscleGroup.MuscleFunction)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MuscleGroup.MuscleFunction)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MuscleGroup.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MuscleGroup.Color)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.MuscleGroup?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

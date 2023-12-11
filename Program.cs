@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<Db_Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<Db_Context>(options => {
+    var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlServer(connString);
+});
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
-    })
+builder.Services
+    .AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<Db_Context>();
 
 var app = builder.Build();
@@ -25,7 +27,14 @@ else
 
 using (var scope = app.Services.CreateScope())
 {
-    Seeds.Initialize(scope.ServiceProvider.GetRequiredService<Db_Context>());
+    var context = scope.ServiceProvider.GetRequiredService<Db_Context>();
+    
+    Seeds.Initialize(context);
+
+    System.Console.WriteLine(context.Database.CanConnect() ? 
+        "@@@ Successfully connected to database" : 
+        "@@@ Error connection to database"
+    );
 }
 
 app.UseHttpsRedirection();
