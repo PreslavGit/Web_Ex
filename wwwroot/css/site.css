@@ -23,9 +23,10 @@ button {
 }
 
 :root {
-  --primary: rgb(18, 145, 230); 
-  --secondary: rgb(164, 255, 209);
+  --primary: #EB1616; 
+  --secondary:#f80d0d;
   --error: rgb(253, 97, 58);
+  --accent: #cd3737;
 }
 
 .text-primary{

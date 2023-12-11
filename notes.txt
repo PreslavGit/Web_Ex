@@ -4,11 +4,42 @@
 тези които не са се регистрирали биха могли само да разглеждат различните програми, 
 без да имат право да ги редактират или добавят нови.
 
-exercises- видове упражнения
-muscle groups - мускулни групи
-plans - план
-routines - програма за деня
-workouts  - тренировка 
+Exercises- видове упражнения
+    Id
+    Name
+    Muscle_Group_Id
+    Color
+
+Workouts  - тренировка 
+    Id
+    User_Id
+    Name
+    Color
+
+Workout_Excercises
+    Id
+    Workout_Id
+    Exercise_Id
+    Reps
+    Weight
+    Duration
+    Rest_Seconds
+
+Muscle_Groups - мускулни групи
+    Id
+    Name
+
+Plans - план
+    Id
+    Name
+    User_Id
+    Color
+PlanWorkouts
+    Id
+    Plan_Id
+    Workout_Id
+    Rest_Day
+
 
 
 
