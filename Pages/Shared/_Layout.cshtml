@@ -38,7 +38,7 @@
                             <a class="nav-link text-secondary" asp-area="" asp-page="/Exercise/Index">Exercise</a>
                         </li>
                         
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User?.Identity?.IsAuthenticated != null && User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-error" asp-area="" asp-page="/Auth/Logout">Logout</a>

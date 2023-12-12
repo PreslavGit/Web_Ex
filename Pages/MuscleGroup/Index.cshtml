@@ -5,12 +5,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-white">Index</h1>
 
-<p>
+<p >
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table text-primary">
+<table class="table text-primary" >
     <thead>
         <tr>
             <th>
@@ -30,7 +30,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model.MuscleGroup) {
-        <tr>
+        <tr style="color: @item.Color">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -44,8 +44,8 @@
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
