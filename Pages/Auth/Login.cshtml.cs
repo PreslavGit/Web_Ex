@@ -35,23 +35,10 @@ namespace webex.Pages
         {
             if (ModelState.IsValid)
             {
-                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
-                System.Console.WriteLine(user);
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, false, lockoutOnFailure: true);
-                System.Console.WriteLine(result);
                 if (result.Succeeded)
                 {
                     return RedirectToPage("/Index");
-                }
-
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("/LoginWith2fa", new { ReturnUrl = "/Index", RememberMe = false });
-                }
-
-                if (result.IsLockedOut)
-                {
-                    return RedirectToPage("/Lockout");
                 }
                 else
                 {

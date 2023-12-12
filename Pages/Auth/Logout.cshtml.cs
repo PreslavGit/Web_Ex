@@ -17,13 +17,8 @@ namespace webex.Pages
 
         public async Task<IActionResult> OnGet()
         {
-            // Perform the user logout
             await _signInManager.SignOutAsync();
-
-            // Optionally, sign out from additional external authentication providers
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            // Redirect to the home page or any other desired page after logout
             return RedirectToPage("/Index");
         }
     }

@@ -19,4 +19,5 @@ public class Db_Context : IdentityDbContext<IdentityUser>
     }
 
     public DbSet<MuscleGroup> MuscleGroups { get; set; }
+    public DbSet<Exercise> Exercises { get; set; }
 }

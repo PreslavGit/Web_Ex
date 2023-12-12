@@ -42,9 +42,6 @@ namespace webex.Pages
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                System.Console.WriteLine(user);
-                System.Console.WriteLine("------------------");
-                System.Console.WriteLine(result);
                 if (result.Succeeded)
                 {
                     return RedirectToPage("/Index");
