@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using webex.Models;
+using webex.Data;
 
 namespace webex.Pages_MuscleGroup
 {
     public class CreateModel : PageModel
     {
-        private readonly Db_Context _context;
+        private readonly DbContextEx _context;
 
-        public CreateModel(Db_Context context)
+        public CreateModel(DbContextEx context)
         {
             _context = context;
         }

@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using webex.Models;
+using webex.Data;
 
 namespace webex.Pages_MuscleGroup
 {
     public class EditModel : PageModel
     {
-        private readonly Db_Context _context;
+        private readonly DbContextEx _context;
 
-        public EditModel(Db_Context context)
+        public EditModel(DbContextEx context)
         {
             _context = context;
         }

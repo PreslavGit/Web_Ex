@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using webex.Data;
 
 public static class Seeds
 {
-    public static void Initialize(Db_Context context)
+    public static void Initialize(DbContextEx context)
     {
         context.Database.Migrate();
 

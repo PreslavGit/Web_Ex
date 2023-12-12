@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using webex.Data;
 
 #nullable disable
 
 namespace webex.Migrations
 {
-    [DbContext(typeof(Db_Context))]
+    [DbContext(typeof(DbContextEx))]
     [Migration("20231206204006_MuscleGroups")]
     partial class MuscleGroups
     {

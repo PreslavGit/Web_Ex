@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using webex.Models;
+using webex.Data;
 
 namespace webex.Pages_MuscleGroup
 {
     public class IndexModel : PageModel
     {
-        private readonly Db_Context _context;
+        private readonly DbContextEx _context;
 
-        public IndexModel(Db_Context context)
+        public IndexModel(DbContextEx context)
         {
             _context = context;
         }

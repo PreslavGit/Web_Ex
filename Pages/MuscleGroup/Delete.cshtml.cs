@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using webex.Models;
+using webex.Data;
 
 namespace webex.Pages_MuscleGroup
 {
     public class DeleteModel : PageModel
     {
-        private readonly Db_Context _context;
+        private readonly DbContextEx _context;
 
-        public DeleteModel(Db_Context context)
+        public DeleteModel(DbContextEx context)
         {
             _context = context;
         }

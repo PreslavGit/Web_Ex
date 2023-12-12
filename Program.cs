@@ -1,17 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using webex.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<Db_Context>(options => {
+builder.Services.AddDbContext<DbContextEx>(options => {
     var connString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseSqlServer(connString);
 });
 
 builder.Services
     .AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<Db_Context>();
+    .AddEntityFrameworkStores<DbContextEx>();
 
 var app = builder.Build();
 
@@ -27,7 +28,7 @@ else
 
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<Db_Context>();
+    var context = scope.ServiceProvider.GetRequiredService<DbContextEx>();
     
     Seeds.Initialize(context);
 
