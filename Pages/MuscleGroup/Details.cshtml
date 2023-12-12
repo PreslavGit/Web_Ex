@@ -8,9 +8,9 @@
 <h1 class="text-white">Details</h1>
 
 <div>
-    <h4>MuscleGroup</h4>
+    <h4 class="text-white">MuscleGroup</h4>
     <hr />
-    <dl class="row">
+    <dl class="row text-white">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MuscleGroup.Name)
         </dt>
@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.MuscleGroup.Color)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MuscleGroup.Color)
+            <input type="color" class="form-control-color form-control" value="@Model.MuscleGroup.Color" disabled=true>
         </dd>
     </dl>
 </div>

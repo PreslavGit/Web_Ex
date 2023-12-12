@@ -5,12 +5,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-white">Index</h1>
+<h1 class="text-white">Muscle Groups</h1>
 
-<p >
+<p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table text-primary" >
+<table class="table text-neutral">
     <thead>
         <tr>
             <th>
@@ -21,9 +21,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MuscleGroup[0].MuscleFunction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MuscleGroup[0].Color)
             </th>
             <th></th>
         </tr>
@@ -39,9 +36,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MuscleFunction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>

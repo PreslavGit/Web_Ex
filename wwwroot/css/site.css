@@ -1,31 +1,3 @@
-
-.nav-link {
-  border-radius: 7px;
-}
-
-.nav-link:hover {
-  background-color: rgb(65, 65, 65);
-}
-
-.bg-body{
-  background-color: var(--base) !important;
-}
-
-input {
-  padding: 4px 8px;
-  border-radius: 10px;
-  border: none;
-  margin: 6px;
-}
-
-button {
-  padding: 8px 12px;
-  font-size: 16px;
-  border-radius: 12px;
-  border: none;
-  box-shadow: black 4px 4px 4px;
-}
-
 :root {
   --primary: #EB1616; 
   --secondary:#f80d0d;
@@ -33,16 +5,46 @@ button {
   --accent: #C81313;
   --neutral: #6C7293;
   --base:  #191C24; 
+  --black: black;
 }
 
-.text-primary{
-  color: var(--primary) !important;
+/* GLOBAL COLORS */
+
+/* BACKGROUND */
+.bg-body{
+  background-color: var(--base) !important;
+}
+
+.bg-secondary{
+  background-color: var(--secondary) !important;
+}
+
+.bg-error{
+  background-color: var(--error);
 }
 
 .bg-primary{
   background-color: var(--primary);
 }
 
+/* TEXT */
+.text-primary{
+  color: var(--primary) !important;
+}
+
+.text-secondary{
+  color: var(--secondary) !important;
+}
+
+.text-error{
+  color: var(--error) !important;
+}
+
+.text-neutral{
+  color: var(--neutral);
+}
+
+/* BUTTONS */
 .btn-primary{
   background-color: var(--primary);
   border: none;
@@ -52,6 +54,7 @@ button {
   background-color: var(--accent);
 }
 
+/* LINKS */
 a{
   color: var(--primary);
   border: none;
@@ -61,42 +64,57 @@ a:hover{
   color: var(--accent);
 }
 
-.text-secondary{
-  color: var(--secondary) !important;
-}
 
-.bg-secondary{
-  background-color: var(--secondary) !important;
-}
 
-.text-error{
-  color: var(--error) !important;
-}
 
-.bg-error{
-  background-color: var(--error);
-}
 
-.bold{
-  font-weight: bold;
-}
-
-.text-neutral{
-  color: var(--neutral);
-}
-
+/* FORMS */
 .form-control{
-  background-color: black !important;
+  background-color: var(--black) !important;
   color: white;
+  border: none;
+  margin-bottom: 1em;
 }
 
 .form-control:focus{
-  color:white;
-  border: none;
-}
-
-.form-control:focus {   
   border-color: var(--primary);
   box-shadow: 0 0 0 2px var(--primary) inset;
   outline: 0 none;
+  color: white;
+}
+
+.form-control-color {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.control-label{
+  color: var(--neutral);
+  margin: 4px 0;
+  font-size: 18px;
+}
+
+
+
+
+
+/* TABLE */
+.table>thead>tr>th:first-child, 
+.table>tbody>tr>td:first-child, 
+.table>tbody>tr>td:last-child, 
+.table>thead>tr>th:last-child{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.table{
+  background-color: var(--black);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-width: max-content;
+}
+
+.table>tbody>tr{
+  border-color: var(--neutral);
 }
