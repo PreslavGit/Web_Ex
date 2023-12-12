@@ -5,9 +5,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-white">Create</h1>
 
-<h4>Exercise</h4>
+<h4 class="text-white">Exercise</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,8 +20,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Exercise.Color" class="control-label"></label>
-                <input asp-for="Exercise.Color" class="form-control" />
+                <input asp-for="Exercise.Color" class="form-control form-control-color" type="color"/>
                 <span asp-validation-for="Exercise.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Muscle Groups</label>
+                <div class="bg-black multi-select">
+                    @if(Model.MuscleGroups != null)
+                    {
+                        @foreach (var mg in Model.MuscleGroups){
+                            <div style="color: @mg.Color">
+                                <span>@mg.Name</span>
+                                <input type="checkbox" style="accent-color: @mg.Color;" name="SelectedMuscleGroupIds" value="@mg.Id">
+                            </div>
+                        }
+                    }
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -33,6 +47,41 @@
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
+
+<style>
+    .multi-select{
+        margin-bottom: 1em;
+        max-height: 130px;
+        overflow: auto;
+    }
+    
+    .multi-select::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    .multi-select::-webkit-scrollbar{
+        background-color: black;
+    }
+
+    .multi-select::-webkit-scrollbar-thumb{
+        background-color: red;
+    }
+
+    .multi-select>div{
+        border-bottom: grey solid 1px;
+        padding: 4px 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .multi-select>div:last-child{
+        border: none;
+    }
+
+    .multi-select>div>input{
+        transform: scale(1.5);
+    }
+</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
