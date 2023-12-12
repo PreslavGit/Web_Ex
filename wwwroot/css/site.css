@@ -7,6 +7,10 @@
   background-color: rgb(65, 65, 65);
 }
 
+.bg-body{
+  background-color: var(--base) !important;
+}
+
 input {
   padding: 4px 8px;
   border-radius: 10px;
@@ -26,7 +30,9 @@ button {
   --primary: #EB1616; 
   --secondary:#f80d0d;
   --error: rgb(253, 97, 58);
-  --accent: #cd3737;
+  --accent: #C81313;
+  --neutral: #6C7293;
+  --base:  #191C24; 
 }
 
 .text-primary{
@@ -35,6 +41,24 @@ button {
 
 .bg-primary{
   background-color: var(--primary);
+}
+
+.btn-primary{
+  background-color: var(--primary);
+  border: none;
+}
+
+.btn-primary:hover{
+  background-color: var(--accent);
+}
+
+a{
+  color: var(--primary);
+  border: none;
+}
+
+a:hover{
+  color: var(--accent);
 }
 
 .text-secondary{
@@ -55,4 +79,24 @@ button {
 
 .bold{
   font-weight: bold;
+}
+
+.text-neutral{
+  color: var(--neutral);
+}
+
+.form-control{
+  background-color: black !important;
+  color: white;
+}
+
+.form-control:focus{
+  color:white;
+  border: none;
+}
+
+.form-control:focus {   
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary) inset;
+  outline: 0 none;
 }
