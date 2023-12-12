@@ -40,7 +40,7 @@ namespace webex.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Exercises");
+                    b.ToTable("Exercises", (string)null);
                 });
 
             modelBuilder.Entity("ExerciseMuscleGroup", b =>
@@ -55,7 +55,7 @@ namespace webex.Migrations
 
                     b.HasIndex("MuscleGroupsId");
 
-                    b.ToTable("ExerciseMuscleGroup");
+                    b.ToTable("ExerciseMuscleGroup", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -282,7 +282,7 @@ namespace webex.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MuscleGroups");
+                    b.ToTable("MuscleGroups", (string)null);
                 });
 
             modelBuilder.Entity("ExerciseMuscleGroup", b =>

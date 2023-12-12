@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using webex.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<DbContextEx>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Db_ContextEx") ?? throw new InvalidOperationException("Connection string 'Db_ContextEx' not found.")));
 builder.Services.AddDbContext<DbContextEx>(options => {
     var connString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseSqlServer(connString);
