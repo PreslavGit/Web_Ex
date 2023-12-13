@@ -27,7 +27,9 @@ namespace webex.Pages_Exercise
                 return NotFound();
             }
 
-            var exercise = await _context.Exercises.FirstOrDefaultAsync(m => m.Id == id);
+            var exercise = await _context.Exercises
+                .Include(ex => ex.MuscleGroups)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (exercise == null)
             {
                 return NotFound();

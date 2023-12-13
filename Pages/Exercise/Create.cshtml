@@ -48,40 +48,7 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
-<style>
-    .multi-select{
-        margin-bottom: 1em;
-        max-height: 130px;
-        overflow: auto;
-    }
-    
-    .multi-select::-webkit-scrollbar{
-        width: 10px;
-    }
 
-    .multi-select::-webkit-scrollbar{
-        background-color: black;
-    }
-
-    .multi-select::-webkit-scrollbar-thumb{
-        background-color: red;
-    }
-
-    .multi-select>div{
-        border-bottom: grey solid 1px;
-        padding: 4px 20px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .multi-select>div:last-child{
-        border: none;
-    }
-
-    .multi-select>div>input{
-        transform: scale(1.5);
-    }
-</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
