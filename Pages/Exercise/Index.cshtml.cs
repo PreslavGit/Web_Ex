@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using webex.Data;
+using webex.Models;
 
 namespace webex.Pages_Exercise
 {
@@ -24,7 +25,9 @@ namespace webex.Pages_Exercise
         {
             if (_context.Exercises != null)
             {
-                Exercise = await _context.Exercises.ToListAsync();
+                Exercise = await _context.Exercises 
+                    .Include(ex => ex.MuscleGroups)
+                    .ToListAsync();
             }
         }
     }

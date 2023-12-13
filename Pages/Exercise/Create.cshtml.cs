@@ -37,14 +37,23 @@ namespace webex.Pages_Exercise
             {
                 return await OnGetAsync();
             }
-            foreach (var id in SelectedMuscleGroupIds){
-                System.Console.WriteLine(id);
-            }
-            return await OnGetAsync();
-            _context.Exercises.Add(Exercise);
-            await _context.SaveChangesAsync();
 
+            MuscleGroups = await _context.MuscleGroups.ToListAsync();
+            this.AppendMuscleGroups();
+
+            await _context.Exercises.AddAsync(Exercise);
+            await _context.SaveChangesAsync();
+             
             return RedirectToPage("./Index");
+        }
+        
+        private void AppendMuscleGroups(){
+            foreach (var muscleGroupId in SelectedMuscleGroupIds){
+                var muscleGroupEntity = MuscleGroups.Find(mg => mg.Id == muscleGroupId);
+                if(muscleGroupEntity != null){
+                    Exercise.MuscleGroups.Add(muscleGroupEntity);
+                }
+            }
         }
     }
 }

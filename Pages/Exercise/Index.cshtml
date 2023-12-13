@@ -16,6 +16,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Exercise[0].Name)
             </th>
+            <th>
+                Muscle groups
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -26,6 +29,11 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
+                @foreach(var mg in item.MuscleGroups){
+                   <span class="badge" style="color: @mg.Color; border-color: @mg.Color">@mg.Name</span> 
+                }
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
@@ -34,3 +42,11 @@
 }
     </tbody>
 </table>
+
+<style>
+    .badge{
+        border-radius: 20px;
+        border: black solid 1px;
+        padding: 5 25px;
+    }
+</style>
