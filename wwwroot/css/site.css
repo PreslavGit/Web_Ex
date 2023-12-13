@@ -1,7 +1,7 @@
 :root {
   --primary: #EB1616; 
   --secondary:#f80d0d;
-  --error: rgb(253, 97, 58);
+  --error: rgb(228, 41, 31);
   --accent: #C81313;
   --neutral: #6C7293;
   --base:  #191C24; 
@@ -46,7 +46,7 @@
 
 /* BUTTONS */
 .btn-primary{
-  background-color: var(--primary);
+  background-color: var(--error);
   border: none;
 }
 
@@ -117,4 +117,46 @@ a:hover{
 
 .table>tbody>tr{
   border-color: var(--neutral);
+}
+
+
+/*MULTI SELECT*/
+.multi-select{
+  margin-bottom: 1em;
+  max-height: 130px;
+  overflow: auto;
+}
+
+.multi-select::-webkit-scrollbar{
+  width: 10px;
+}
+
+.multi-select::-webkit-scrollbar{
+  background-color: black;
+}
+
+.multi-select::-webkit-scrollbar-thumb{
+  background-color: red;
+}
+
+.multi-select>div{
+  border-bottom: grey solid 1px;
+  padding: 4px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.multi-select>div:last-child{
+  border: none;
+}
+
+.multi-select>div>input{
+  transform: scale(1.5);
+}
+
+/*Badge*/
+.badge{
+  border-radius: 20px;
+  border: black solid 1px;
+  padding: 5 25px;
 }
