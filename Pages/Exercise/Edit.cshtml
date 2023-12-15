@@ -21,22 +21,29 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Muscle Groups</label>
-                <div class="bg-black multi-select">
                     @if(Model.MuscleGroups != null)
                     {
-                        @foreach (var mg in Model.MuscleGroups){
-                            
-                            <div style="color: @mg.Color">
-                                <span>@mg.Name</span>
-                                @{
-                                    var isChecked = Model.SelectedMuscleGroups.IndexOf(mg.Id) == -1 ? false : true;
-                                }
-                                <input type="checkbox" style="accent-color: @mg.Color;"
-                                 name="SelectedMuscleGroupIds" value="@mg.Id" checked="@isChecked">
-                            </div>
-                        }
+                        <div class="bg-black multi-select">
+                            @foreach (var mg in Model.MuscleGroups){
+                                
+                                <div style="color: @mg.Color">
+                                    <span>@mg.Name</span>
+                                    @{
+                                        var isChecked = Model.SelectedMuscleGroups.IndexOf(mg.Id) == -1 ? false : true;
+                                    }
+                                    <input type="checkbox" style="accent-color: @mg.Color;"
+                                     name="SelectedMuscleGroupIds" value="@mg.Id" checked="@isChecked">
+                                </div>
+                            }
+                        </div>
                     }
-                </div>
+                    else
+                    {
+                        <div class="text-error text-center mb-4 p-2 bg-black">
+                            <h5>There are no added muscle groups</h5>
+                            <a href="/MuscleGroup/Create">Add here</a>
+                        </div>
+                    }
             <div class="form-group">
                 <label asp-for="Exercise.Color" class="control-label"></label>
                 <input asp-for="Exercise.Color" class="form-control form-control-color" type="color" />

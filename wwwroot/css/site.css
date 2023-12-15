@@ -83,6 +83,11 @@ a:hover{
   color: white;
 }
 
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:focus{
+  transition: background-color 0s 6000000s, color 0s 6000000s;
+}
+
 .form-control-color {
   padding: 0;
   margin: 0;
@@ -113,6 +118,10 @@ a:hover{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   min-width: max-content;
+}
+
+.table>thead>tr{
+  color: white;
 }
 
 .table>tbody>tr{
