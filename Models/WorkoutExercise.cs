@@ -1,4 +1,9 @@
-public class WorkoutExercise {
+using webex.Models;
+
+namespace webex.Models;
+
+public class WorkoutExercise 
+{
     public int Id { get; set; }
     public int Reps { get; set; }
     public decimal Weight { get; set; }

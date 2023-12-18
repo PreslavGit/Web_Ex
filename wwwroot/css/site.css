@@ -100,7 +100,10 @@ a:hover{
   font-size: 18px;
 }
 
-
+.form-check-input:checked{
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
 
 
 

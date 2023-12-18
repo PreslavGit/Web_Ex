@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using webex.Data;
+using webex.Models;
 
 namespace webex.Pages.Workouts
 {
@@ -18,7 +19,7 @@ namespace webex.Pages.Workouts
             _context = context;
         }
 
-      public Workout Workout { get; set; } = default!; 
+        public Workout Workout { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

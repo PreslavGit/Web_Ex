@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using webex.Data;
+using webex.Models;
 
 namespace webex.Pages_Exercise
 {
@@ -19,7 +20,7 @@ namespace webex.Pages_Exercise
         }
 
         [BindProperty]
-      public Exercise Exercise { get; set; } = default!;
+        public Exercise Exercise { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
