@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using webex.Data;
+using webex.Models;
 
 namespace webex.Pages.Workouts
 {
     public class CreateModel : PageModel
     {
         private readonly webex.Data.DbContextEx _context;
+        [BindProperty]
+        public Workout Workout { get; set; } = default!;
 
         public CreateModel(webex.Data.DbContextEx context)
         {
@@ -23,11 +26,6 @@ namespace webex.Pages.Workouts
             return Page();
         }
 
-        [BindProperty]
-        public Workout Workout { get; set; } = default!;
-        
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
           if (!ModelState.IsValid || _context.Workouts == null || Workout == null)
@@ -38,7 +36,7 @@ namespace webex.Pages.Workouts
             _context.Workouts.Add(Workout);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return Redirect("/Workouts/Edit?id=" + Workout.Id);
         }
     }
 }
