@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using webex.Data;
 
@@ -11,9 +12,11 @@ using webex.Data;
 namespace webex.Migrations
 {
     [DbContext(typeof(DbContextEx))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20231220092416_NullableWorkoutExercise")]
+    partial class NullableWorkoutExercise
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
