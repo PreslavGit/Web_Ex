@@ -42,18 +42,20 @@ namespace webex.Pages.Workouts
             Workout = workout;
             return Page();
         }
-        
+
         public async Task<IActionResult> OnPostExercise(int? id)
         {
             var workout = await getWorkoutMapped(id);
 
             var newEx = new WorkoutExercise();
-            
-            if(workout == null){
+
+            if (workout == null)
+            {
                 workout = Workout;
             }
 
-            if(workout.WorkoutExercises == null){
+            if (workout.WorkoutExercises == null)
+            {
                 workout.WorkoutExercises = new List<WorkoutExercise>();
             }
 
@@ -70,21 +72,49 @@ namespace webex.Pages.Workouts
                 return Page();
             }
 
-            if(WorkoutExercise.Exercise?.Id != null)
+            if (WorkoutExercise.Exercise?.Id != null)
             {
                 WorkoutExercise.Exercise = await _context.Exercises
                     .Where(e => e.Id == WorkoutExercise.Exercise.Id)
-                    .FirstOrDefaultAsync();    
+                    .FirstOrDefaultAsync();
             }
 
-            var workout =  await getWorkoutMapped(workoutId);             
+            var workout = await getWorkoutMapped(workoutId);
             var oldIndex = workout.WorkoutExercises.FindIndex(we => we.Id == WorkoutExercise.Id);
             workout.WorkoutExercises[oldIndex] = WorkoutExercise;
-            
+
             await _context.SaveChangesAsync();
 
             return Redirect("/Workouts/Edit?id=" + workoutId);
         }
+
+         public async Task<IActionResult> OnPostDeleteExercise(int? workoutId, int? exId)
+        {
+            if (workoutId == null || exId == null){
+                return NotFound();
+            }
+
+            var workout = await getWorkoutMapped(workoutId);
+
+            if (workout == null)
+            {
+                return NotFound();
+            }
+
+            var exerciseToDelete = workout.WorkoutExercises
+                .FirstOrDefault(e => e.Id == exId);
+
+            if (exerciseToDelete == null)
+            {
+                return NotFound();
+            }
+
+            workout.WorkoutExercises.Remove(exerciseToDelete);
+            await _context.SaveChangesAsync();
+
+            return Redirect("/Workouts/Edit?id=" + workoutId);
+        }
+
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -114,7 +144,7 @@ namespace webex.Pages.Workouts
 
         private bool WorkoutExists(int id)
         {
-          return (_context.Workouts?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Workouts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
         private async Task<Workout> getWorkoutMapped(int? id)
@@ -122,9 +152,9 @@ namespace webex.Pages.Workouts
             var wo = await _context.Workouts
                 .Include(w => w.WorkoutExercises)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            
-            if(wo == null) throw new Exception("Enity not found"); 
-            
+
+            if (wo == null) throw new Exception("Enity not found");
+
             return wo;
         }
 
