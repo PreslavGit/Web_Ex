@@ -5,12 +5,12 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="text-white">Details</h1>
 
 <div>
-    <h4>Workout</h4>
+    <h4 class="text-white">Workout</h4>
     <hr />
-    <dl class="row">
+    <dl class="row text-white">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Workout.Name)
         </dt>
@@ -18,10 +18,18 @@
             @Html.DisplayFor(model => model.Workout.Name)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Workout.WorkoutExercises)
+        </dt>
+        <dd class="col-sm-10 text-neutral">
+            @foreach(var ex in Model.Workout.WorkoutExercises){
+                <span class="badge" style="color: @(ex.Exercise.Color); border-color: @(ex.Exercise.Color)">@ex.Exercise.Name</span>
+            }
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Workout.Color)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Workout.Color)
+            <input type="color" class="form-control-color form-control" value="@Model.Workout.Color" disabled=true>
         </dd>
     </dl>
 </div>

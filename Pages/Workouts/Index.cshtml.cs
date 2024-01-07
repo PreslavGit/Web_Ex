@@ -18,14 +18,17 @@ namespace webex.Pages.Workouts
         {
             _context = context;
         }
-
-        public IList<Workout> Workout { get;set; } = default!;
+        [BindProperty]
+        public IList<Models.Workout> Workout { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
             if (_context.Workouts != null)
             {
-                Workout = await _context.Workouts.ToListAsync();
+                Workout = await _context.Workouts
+                .Include(w => w.WorkoutExercises)
+                    .ThenInclude(ex => ex.Exercise)
+                .ToListAsync();
             }
         }
     }

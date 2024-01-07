@@ -18,8 +18,9 @@ namespace webex.Pages.Workouts
         {
             _context = context;
         }
-
+[BindProperty]  
         public Workout Workout { get; set; } = default!; 
+         public List<Models.Exercise> Exercises { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,7 +29,9 @@ namespace webex.Pages.Workouts
                 return NotFound();
             }
 
-            var workout = await _context.Workouts.FirstOrDefaultAsync(m => m.Id == id);
+            
+            Exercises = _context.Exercises.ToList();
+            var workout = await getWorkoutMapped(id);
             if (workout == null)
             {
                 return NotFound();
@@ -38,6 +41,18 @@ namespace webex.Pages.Workouts
                 Workout = workout;
             }
             return Page();
+        }
+
+       private async Task<Workout> getWorkoutMapped(int? id)
+        {
+            var wo = await _context.Workouts
+                .Include(w => w.WorkoutExercises)
+                    .ThenInclude(we => we.Exercise)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (wo == null) throw new Exception("Enity not found");
+
+            return wo;
         }
     }
 }
