@@ -29,74 +29,78 @@
             </div>
         </form>
     </div>
-    <div id="ex-list" class="row">
-        @{
-            var exercisesList = new SelectList(Model.Exercises, "Id", "Name");
-        }
-        @foreach (var ex in Model.Workout.WorkoutExercises)
-        {
-            <form method="post" asp-page-handler="DeleteExercise">
-                <input type="hidden" name="workoutId" value="@Model.Workout.Id" />
-                <input type="hidden" name="exId" value="@ex.Id" />
-                <button type="submit">X</button>
-            </form>
-            <form method="post" asp-page-handler="exerciseupdate" class="exercise col-sm-3 m-1">
-                <input type="hidden" name="workoutId" value="@Model.Workout.Id" />
-                <input type="hidden" name="WorkoutExercise.Id" value="@ex.Id" />
+    <div class="container">
+        <div id="ex-list" class="row justify-content-start">
+            @{
+                var exercisesList = new SelectList(Model.Exercises, "Id", "Name");
+            }
+            @foreach (var ex in Model.Workout.WorkoutExercises)
+            {
+                <div class="exercise col-sm-3">
+                    <form method="post" asp-page-handler="DeleteExercise" class="d-flex justify-content-end">
+                        <input type="hidden" name="workoutId" value="@Model.Workout.Id" />
+                        <input type="hidden" name="exId" value="@ex.Id" />
+                        <button type="submit" class="btn btn-primary">X</button>
+                    </form>
+                    <form method="post" asp-page-handler="exerciseupdate">
+                        <input type="hidden" name="workoutId" value="@Model.Workout.Id" />
+                        <input type="hidden" name="WorkoutExercise.Id" value="@ex.Id" />
 
-                <label asp-for="@Model.WorkoutExercise.Exercise" class="control-label"></label>
-                <select asp-for="@Model.WorkoutExercise.Exercise.Id" class="form-control" asp-items="@exercisesList">
-                    <option value="">---</option>
-                    @{
-                        if (@ex.Exercise != null)
-                        {
-                            <option value="@ex.Exercise.Id" selected>@ex.Exercise.Name</option>
+                        <label asp-for="@Model.WorkoutExercise.Exercise" class="control-label"></label>
+                        <select asp-for="@Model.WorkoutExercise.Exercise.Id" class="form-control" asp-items="@exercisesList">
+                            <option value="">---</option>
+                            @{
+                                if (@ex.Exercise != null)
+                                {
+                                    <option value="@ex.Exercise.Id" selected>@ex.Exercise.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="@Model.WorkoutExercise.Exercise" class="text-danger"></span>
+                        @{
+                            var checkExercise = ex.Duration == null;
+
+                            var repDisplay = checkExercise ? "block" : "none";
+                            var durDisplay = !checkExercise ? "block" : "none";
                         }
-                    }
-                </select>
-                <span asp-validation-for="@Model.WorkoutExercise.Exercise" class="text-danger"></span>
-                @{
-                    var checkExercise = ex.Duration == null;
+                        <div class="control-label">Exercise type</div>
+                        <div class="form-check">
+                            <input class="form-check-input repetitions-checkbox" type="radio" name="ex-type"
+                                checked="@checkExercise">
+                            <label class="form-check-label text-white">Repetitions</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input duration-checkbox" type="radio" name="ex-type"
+                                checked="@(!checkExercise)">
+                            <label class="form-check-label text-white">Duration</label>
+                        </div>
 
-                    var repDisplay = checkExercise ? "block" : "none";
-                    var durDisplay = !checkExercise ? "block" : "none";
-                }
-                <div class="control-label">Exercise type</div>
-                <div class="form-check">
-                    <input class="form-check-input repetitions-checkbox" type="radio" name="ex-type"
-                        checked="@checkExercise">
-                    <label class="form-check-label text-white">Repetitions</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input duration-checkbox" type="radio" name="ex-type"
-                        checked="@(!checkExercise)">
-                    <label class="form-check-label text-white">Duration</label>
-                </div>
+                        <div class="repetitions-inputs" style="display: @repDisplay;">
+                            <label asp-for="@Model.WorkoutExercise.Reps" class="control-label"></label>
+                            <input asp-for="@Model.WorkoutExercise.Reps" value="@ex.Reps" class="form-control" />
+                            <span asp-validation-for="@Model.WorkoutExercise.Reps" class="text-danger"></span>
 
-                <div class="repetitions-inputs" style="display: @repDisplay;">
-                    <label asp-for="@Model.WorkoutExercise.Reps" class="control-label"></label>
-                    <input asp-for="@Model.WorkoutExercise.Reps" value="@ex.Reps" class="form-control" />
-                    <span asp-validation-for="@Model.WorkoutExercise.Reps" class="text-danger"></span>
+                            <label asp-for="@Model.WorkoutExercise.Weight" class="control-label"></label>
+                            <input name="WorkoutExercise.Weight" value='@ex.Weight' class="form-control" />
+                            <span asp-validation-for="@Model.WorkoutExercise.Weight" class="text-danger"></span>
+                        </div>
 
-                    <label asp-for="@Model.WorkoutExercise.Weight" class="control-label"></label>
-                    <input name="WorkoutExercise.Weight" value='@ex.Weight' class="form-control" />
-                    <span asp-validation-for="@Model.WorkoutExercise.Weight" class="text-danger"></span>
-                </div>
+                        <div class="duration-inputs" style="display: @durDisplay;">
+                            <label asp-for="@Model.WorkoutExercise.Duration" class="control-label"></label>
+                            <input asp-for="@Model.WorkoutExercise.Duration" value="@ex.Duration" class="form-control" />
+                            <span asp-validation-for="@Model.WorkoutExercise.Duration" class="text-danger"></span>
+                        </div>
 
-                <div class="duration-inputs" style="display: @durDisplay;">
-                    <label asp-for="@Model.WorkoutExercise.Duration" class="control-label"></label>
-                    <input asp-for="@Model.WorkoutExercise.Duration" value="@ex.Duration" class="form-control" />
-                    <span asp-validation-for="@Model.WorkoutExercise.Duration" class="text-danger"></span>
+                        <label asp-for="@Model.WorkoutExercise.Rest_Seconds" class="control-label"></label>
+                        <input asp-for="@Model.WorkoutExercise.Rest_Seconds" value="@ex.Rest_Seconds" class="form-control" />
+                        <span asp-validation-for="@Model.WorkoutExercise.Rest_Seconds" class="text-danger"></span>
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
                 </div>
-
-                <label asp-for="@Model.WorkoutExercise.Rest_Seconds" class="control-label"></label>
-                <input asp-for="@Model.WorkoutExercise.Rest_Seconds" value="@ex.Rest_Seconds" class="form-control" />
-                <span asp-validation-for="@Model.WorkoutExercise.Rest_Seconds" class="text-danger"></span>
-                <div class="text-center">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-            </form>
-        }
+            }
+        </div>
     </div>
     <form method="post" asp-page-handler="exercise">
         <input type="hidden" name="id" value="@Model.Workout.Id" />

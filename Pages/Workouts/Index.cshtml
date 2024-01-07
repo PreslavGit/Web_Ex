@@ -20,10 +20,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Workout) {
+        @foreach (var item in Model.Workout)
+        {
             <tr style="color: @item.Color">
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @foreach (var ex in item.WorkoutExercises)
+                    {
+                        <span class="badge"
+                            style="color: @(ex.Exercise.Color); border-color: @(ex.Exercise.Color)">@ex.Exercise.Name</span>
+                    }
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

@@ -80,7 +80,8 @@ namespace webex.Pages.Workouts
             }
 
             var workout = await getWorkoutMapped(workoutId);
-            var oldIndex = workout.WorkoutExercises.FindIndex(we => we.Id == WorkoutExercise.Id);
+            var oldIndex = workout.WorkoutExercises
+            .FindIndex(we => we.Id == WorkoutExercise.Id);
             workout.WorkoutExercises[oldIndex] = WorkoutExercise;
 
             await _context.SaveChangesAsync();
