@@ -10,36 +10,64 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions text-white">
+        Search
+        <input type="text" name="SearchString" value="@Model.CurrentFilter" class="inputSearch" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-page="./Index"> Show all</a>
+    </div>
+</form>
+
 <table class="table text-neutral">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Exercise[0].Name)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                    asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Exercise[0].Name)
+                </a>
             </th>
             <th>
-                Muscle groups
+                    @Html.DisplayNameFor(model => model.Exercise[0].MuscleGroups)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Exercise) {
-        <tr style="color: @item.Color">
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @foreach(var mg in item.MuscleGroups){
-                   <span class="badge" style="color: @mg.Color; border-color: @mg.Color">@mg.Name</span> 
-                }
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Exercise)
+        {
+            <tr style="color: @item.Color">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @foreach (var mg in item.MuscleGroups)
+                    {
+                        <span class="badge" style="color: @mg.Color; border-color: @mg.Color">@mg.Name</span>
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
+@{
+    var prevDisabled = !Model.Exercise.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Exercise.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.Exercise.PageIndex - 1)"
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @prevDisabled">
+    Previous</a>
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.Exercise.PageIndex + 1)"
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @nextDisabled">
+    Next
+</a>

@@ -10,11 +10,27 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions text-white">
+        Search
+        <input type="text" name="SearchString" value="@Model.CurrentFilter" class="inputSearch" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-page="./Index"> Show all</a>
+    </div>
+</form>
+
 <table class="table text-primary">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Workout[0].Name)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                    asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Workout[0].Name)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workout[0].WorkoutExercises)
             </th>
             <th></th>
         </tr>
@@ -42,3 +58,18 @@
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Workout.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Workout.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.Workout.PageIndex - 1)"
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @prevDisabled">
+    Previous</a>
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.Workout.PageIndex + 1)"
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @nextDisabled">
+    Next
+</a>
+

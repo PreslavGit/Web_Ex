@@ -10,39 +10,73 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions text-white">
+        Search
+        <input type="text" name="SearchString" value="@Model.CurrentFilter" class="inputSearch" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-page="./Index"> Show all</a>
+    </div>
+</form>
+
 <table class="table text-neutral">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MuscleGroup[0].Name)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                    asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.MuscleGroup[0].Name)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MuscleGroup[0].Location)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.LocationSort"
+                    asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.MuscleGroup[0].Location)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MuscleGroup[0].MuscleFunction)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.MuscleFunctionSort"
+                    asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.MuscleGroup[0].MuscleFunction)
+                </a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MuscleGroup) {
-        <tr style="color: @item.Color">
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MuscleFunction)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.MuscleGroup)
+        {
+            <tr style="color: @item.Color">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MuscleFunction)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.MuscleGroup.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.MuscleGroup.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.MuscleGroup.PageIndex - 1)"
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @prevDisabled">
+    Previous</a>
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.MuscleGroup.PageIndex + 1)"
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @nextDisabled">
+    Next
+</a>
