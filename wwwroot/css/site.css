@@ -105,7 +105,24 @@ a:hover{
   border-color: var(--primary);
 }
 
+.inputSearch{
+  background-color: var(--black) !important;
+  color: white;
+  border: none;
+  margin-bottom: 1em;
+}
 
+.inputSearch:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary) inset;
+  outline: 0 none;
+  color: white;
+}
+
+.inputSearch:-webkit-autofill,
+.inputSearch:-webkit-autofill:focus{
+  transition: background-color 0s 6000000s, color 0s 6000000s;
+}
 
 /* TABLE */
 .table>thead>tr>th:first-child, 
