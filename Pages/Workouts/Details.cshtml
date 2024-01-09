@@ -21,9 +21,36 @@
             @Html.DisplayNameFor(model => model.Workout.WorkoutExercises)
         </dt>
         <dd class="col-sm-10 text-neutral">
-            @foreach(var ex in Model.Workout.WorkoutExercises){
-                <span class="badge" style="color: @(ex.Exercise.Color); border-color: @(ex.Exercise.Color)">@ex.Exercise.Name</span>
-            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Repetitions</th>
+                        <th>Weight</th>
+                        <th>Duration</th>
+                        <th>Rest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var ex in Model.Workout.WorkoutExercises){
+                        @{
+                            var exName   = ex.Exercise?.Name ?? "---";
+                            var reps     = ex.Reps != null && ex.Reps != 0 ? ex.Reps.ToString() : "---";
+                            var weight   = ex.Weight != null && ex.Weight != 0 ? ex.Weight.ToString() : "---";
+                            var duration = ex.Duration != null && ex.Duration != 0 ? ex.Duration.ToString() : "---";
+                            var rest     = ex.Rest_Seconds != null && ex.Rest_Seconds != 0 ? ex.Rest_Seconds.ToString() : "---";
+                            var color    = ex.Exercise?.Color ?? "white";
+                        }
+                        <tr style="color: @(color);">
+                            <td>@exName</td>
+                            <td>@reps</td>
+                            <td>@weight</td>
+                            <td>@duration</td>
+                            <td>@rest</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Workout.Color)
