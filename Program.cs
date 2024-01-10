@@ -30,8 +30,9 @@ else
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<DbContextEx>();
-    
-    Seeds.Initialize(context);
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    await Seeds.Initialize(context, userManager);
 
     System.Console.WriteLine(context.Database.CanConnect() ? 
         "@@@ Successfully connected to database" : 

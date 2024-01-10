@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using webex.Models;
 using webex.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webex.Pages_MuscleGroup
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly DbContextEx _context;

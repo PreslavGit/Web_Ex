@@ -7,9 +7,14 @@
 
 <h1 class="text-white">Muscle Groups</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+@if (User?.Identity?.IsAuthenticated != null && User.Identity.IsAuthenticated)
+{
+    <p><a asp-page="Create">Create New</a></p>
+}
+else
+{
+    <p><a href="/Auth/Login" onclick="handleRedirect()">Create - Login required</a></p>
+}
 
 <form asp-page="./Index" method="get">
     <div class="form-actions text-white">
@@ -58,9 +63,15 @@
                     @Html.DisplayFor(modelItem => item.MuscleFunction)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    @if (User?.Identity?.IsAuthenticated != null && User.Identity.IsAuthenticated)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    }
                     <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User?.Identity?.IsAuthenticated != null && User.Identity.IsAuthenticated)
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
         }
@@ -80,3 +91,9 @@
     asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @nextDisabled">
     Next
 </a>
+
+<script>
+    function handleRedirect() {
+        localStorage.setItem('redirect_back', "/MuscleGroup/Create")
+    }
+</script>

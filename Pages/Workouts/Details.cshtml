@@ -33,14 +33,14 @@
                 </thead>
                 <tbody>
                     @foreach(var ex in Model.Workout.WorkoutExercises){
-                        @{
+                        
                             var exName   = ex.Exercise?.Name ?? "---";
                             var reps     = ex.Reps != null && ex.Reps != 0 ? ex.Reps.ToString() : "---";
                             var weight   = ex.Weight != null && ex.Weight != 0 ? ex.Weight.ToString() : "---";
                             var duration = ex.Duration != null && ex.Duration != 0 ? ex.Duration.ToString() : "---";
                             var rest     = ex.Rest_Seconds != null && ex.Rest_Seconds != 0 ? ex.Rest_Seconds.ToString() : "---";
                             var color    = ex.Exercise?.Color ?? "white";
-                        }
+                        
                         <tr style="color: @(color);">
                             <td>@exName</td>
                             <td>@reps</td>
