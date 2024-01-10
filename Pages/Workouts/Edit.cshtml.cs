@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,6 +13,7 @@ using webex.Models;
 
 namespace webex.Pages.Workouts
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly webex.Data.DbContextEx _context;
@@ -89,9 +91,10 @@ namespace webex.Pages.Workouts
             return Redirect("/Workouts/Edit?id=" + workoutId);
         }
 
-         public async Task<IActionResult> OnPostDeleteExercise(int? workoutId, int? exId)
+        public async Task<IActionResult> OnPostDeleteExercise(int? workoutId, int? exId)
         {
-            if (workoutId == null || exId == null){
+            if (workoutId == null || exId == null)
+            {
                 return NotFound();
             }
 

@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using webex.Models;
 using webex.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webex.Pages_MuscleGroup
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly DbContextEx _context;

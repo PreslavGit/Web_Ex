@@ -8,5 +8,14 @@
 
 <div class="text-center bg-body">
     <h1 class="display-4 text-primary">Welcome</h1>
-    <a class="text-secondary" href="/Workouts/Create">Create your training plan here!</a>
+    <a class="text-secondary" href="/Workouts">Create your training plan here!</a>
 </div>
+
+@if(User?.Identity?.IsAuthenticated != null && User.Identity.IsAuthenticated)
+{
+<script>
+        let redirUrl = localStorage.getItem('redirect_back')
+        localStorage.removeItem('redirect_back')
+        if(redirUrl) window.location.replace(redirUrl)
+</script>
+}

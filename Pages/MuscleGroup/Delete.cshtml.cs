@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using webex.Models;
 using webex.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webex.Pages_MuscleGroup
 {
+    [Authorize]
     public class DeleteModel : PageModel
-    {
+    { 
         private readonly DbContextEx _context;
 
         public DeleteModel(DbContextEx context)

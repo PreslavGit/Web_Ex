@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using webex.Models;
 
 namespace webex.Pages_Exercise
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly webex.Data.DbContextEx _context;
@@ -117,14 +119,15 @@ namespace webex.Pages_Exercise
             }
         }
 
-        private void deleteOldMuscleGroups(){
+        private void deleteOldMuscleGroups()
+        {
             var muscleGroupsToDelete = _context.MuscleGroups
                 .Where(mg => mg.Exercises.Any(e => e.Id == Exercise.Id))
                 .Include(mg => mg.Exercises)
                 .ToList();
 
             foreach (var muscleGroup in muscleGroupsToDelete)
-            {   
+            {
                 var removedCnt = muscleGroup.Exercises.RemoveAll(e => e.Id == Exercise.Id);
             }
             _context.SaveChanges();

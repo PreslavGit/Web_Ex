@@ -3,7 +3,7 @@ namespace webex.Models;
 public enum BodyLocation 
 {
    UpperBody,
-   LowerBody 
+   LowerBody
 }
 
 public enum MuscleFunction 

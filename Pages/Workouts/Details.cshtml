@@ -39,7 +39,7 @@
                         var duration = ex.Duration != null && ex.Duration != 0 ? ex.Duration.ToString() : "---";
                         var rest     = ex.Rest_Seconds != null && ex.Rest_Seconds != 0 ? ex.Rest_Seconds.ToString() : "---";
                         var color    = ex.Exercise?.Color ?? "white";
-                       
+
                         <tr style="color: @(color);">
                             <td>@exName</td>
                             <td>@reps</td>
