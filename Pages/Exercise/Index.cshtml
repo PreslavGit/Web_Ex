@@ -18,11 +18,10 @@ else
 
 
 <form asp-page="./Index" method="get">
-    <div class="form-actions text-white">
-        Search
-        <input type="text" name="SearchString" value="@Model.CurrentFilter" class="inputSearch" />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <a asp-page="./Index"> Show all</a>
+    <div class="form-actions text-white search-form-container">
+        <input type="text" name="SearchString" value="@Model.CurrentFilter" class="inputSearch" placeholder="Search..." />
+        <input type="submit" value="Search" class="btn btn-primary"/>
+        <a asp-page="./Index">Clear</a>
     </div>
 </form>
 
@@ -76,11 +75,11 @@ else
 }
 
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.Exercise.PageIndex - 1)"
-    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @prevDisabled">
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn btn-pagination text-primary @prevDisabled">
     Previous</a>
 
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort" asp-route-pageIndex="@(Model.Exercise.PageIndex + 1)"
-    asp-route-currentFilters="@Model.CurrentFilter" class="btn text-primary @nextDisabled">
+    asp-route-currentFilters="@Model.CurrentFilter" class="btn btn-pagination text-primary @nextDisabled">
     Next
 </a>
 

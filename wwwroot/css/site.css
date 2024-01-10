@@ -54,6 +54,14 @@
   background-color: var(--accent);
 }
 
+.btn-pagination{
+  border: var(--primary) solid 1px;
+  border-radius: 6px;
+}
+
+.btn-pagination:hover{
+  background-color: black;
+}
 /* LINKS */
 a{
   color: var(--primary);
@@ -109,7 +117,22 @@ a:hover{
   background-color: var(--black) !important;
   color: white;
   border: none;
-  margin-bottom: 1em;
+  margin-right: 10px;
+  padding: 6px 5px;
+} 
+
+.search-form-container{
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-form-container>a{
+  text-decoration: none;
+  border: var(--primary) solid 1px;
+  border-radius: 6px;
+  padding: 5px 10px;
 }
 
 .inputSearch:focus{
