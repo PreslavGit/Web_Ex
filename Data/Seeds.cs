@@ -9,7 +9,6 @@ public static class Seeds
     public async static Task Initialize(DbContextEx context, UserManager<IdentityUser> userManager)
     {
         context.Database.Migrate();
-
         
         if (context.MuscleGroups.Any() || context.Exercises.Any() || context.Workouts.Any() || context.WorkoutExercises.Any())
         {
@@ -21,7 +20,7 @@ public static class Seeds
         var result = await userManager.CreateAsync(user, "taina_parola_za_ADMIN1");
     
       
-      //MuscleGroups
+        //MuscleGroups
         var musclegroups = new List<MuscleGroup>(){
             new MuscleGroup{ Name="Chest", Location=BodyLocation.UpperBody, MuscleFunction =MuscleFunction.Push,Color= "#4b88c9"},
             new MuscleGroup{Name="Back", Location= BodyLocation.UpperBody, MuscleFunction =MuscleFunction.Pull,Color= "#8ae05c"},
